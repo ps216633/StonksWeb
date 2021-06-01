@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,5 +19,6 @@ Route::get('/', function () {
 })->name('index');
 
 Auth::routes();
-
+Route::post('update', [App\Http\Controllers\UserController::class, 'update'])->name('update');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/send-email', [UserController::class, 'mail']);

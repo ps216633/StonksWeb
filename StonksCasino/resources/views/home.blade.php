@@ -12,12 +12,20 @@
                 <div class="row">
                     <div class="col-md-6">
                         <br>
-                        <p class="m-0">Huidig saldo: €{{ Auth::user()->tokens }}</p>
+                        <p class="m-0">Huidig saldo: €{{ Auth::user()->token }}</p>
                         <br>
+                        <form action="{{ route('update') }}" method="post">
+                            @csrf
                         <label for="token">Geld Storten</label>
-                        <input type="text" id="token"  class="form-control" name="token" placeholder="Voer hier uw bedrag in">
+                        <input type="text" id="tokens"  class="form-control @error('tokens') is-invalid @enderror" name="tokens" placeholder="Voer hier uw bedrag in">
+                        @error('tokens')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                      <br>
                 <button type="submit" class="btn btn-lg btn-groen ">Betalen</button>
+            </form>
 
                     </div>
                     <div class="col-md-6">
@@ -46,12 +54,12 @@
                     <div class="col-auto">
                         <br>
                         <h3>
-                            Gebruikersnaam: {{ Auth::user()->name }}
+                            Gebruikersnaam: {{ Auth::user()->username}}
                         </h3>
                         <a href="" class="groen">Verander mijn gebruikersnaam</a>
                         <br> <br>
                         <h3>
-                            E-mailadres: {{ Auth::user()->email }}
+                            E-mailadres: {{ Auth::user()->email}}
                         </h3>
                         <a href="" class="groen">Verander mijn e-mailadres</a>
                         <br>
